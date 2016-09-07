@@ -1,0 +1,12 @@
+target/
+.project
+.class
+.setting
+.classpath
+.project
+.settings/
+.svn/
+*.log
+RemoteSystemsTempFiles/
+.metadata/
+.recommenders/

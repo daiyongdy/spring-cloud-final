@@ -1,0 +1,47 @@
+---
+spring:
+  application:
+    name: eureka-server-clustered   
+  profiles: p
+server:
+  port: 8011  
+eureka:
+  instance:
+    hostname: eurekaprimary       
+  client:
+    registerWithEureka: true
+    fetchRegistry: true        
+    serviceUrl:
+      defaultZone: http://eurekatertiary:8012/eureka/,http://eurekatertiary:8013/eureka/
+
+---
+spring:
+  application:
+    name: eureka-server-clustered      
+  profiles: s
+server:
+  port: 8012
+eureka:
+  instance:
+    hostname: eurekasecondary       
+  client:
+    registerWithEureka: true
+    fetchRegistry: true        
+    serviceUrl:
+      defaultZone: http://eurekatertiary:8013/eureka/,http://eurekaprimary:8011/eureka/
+
+---
+spring:
+  application:
+    name: eureka-server-clustered      
+  profiles: t
+server:
+  port: 8013
+eureka:
+  instance:
+    hostname: eurekatertiary       
+  client:
+    registerWithEureka: true
+    fetchRegistry: true    
+    serviceUrl:
+      defaultZone: http://eurekaprimary:8011/eureka/,http://eurekasecondary:8012/eureka/  
